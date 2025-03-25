@@ -11,9 +11,18 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.15",
+<<<<<<< HEAD
     "lucide-react": "^0.483.0",
+=======
+    "axios": "^1.8.4",
+    "framer-motion": "^12.5.0",
+    "razorpay": "^2.9.6",
+>>>>>>> 76bbe0ae093370129fd24d7de49e8c19773d2600
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.4.0",
+    "react-toastify": "^11.0.5",
     "tailwindcss": "^4.0.15"
   },
   "devDependencies": {
