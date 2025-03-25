@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import { Link } from "react-router-dom";
+
+>>>>>>> b46b1745a0f86b2c7a80c1f207c441d51cb486c6
 
 const EnvironmentPage = () => {
   const [position, setPosition] = useState({ x: 50, y: 50 });
@@ -64,6 +69,7 @@ const EnvironmentPage = () => {
       <img src="/money.png" className="absolute top-90 left-140 w-26 h-56 z-50" alt="Extra 2" />
       <img src="/c.png" className="absolute bottom-40 left-130 w-36 h-46 z-50" alt="Extra 3" />
       <img src="/board.png" className="absolute bottom-50 right-30 w-16 h-30 z-50" alt="Extra 4" />
+<<<<<<< HEAD
       <img src="/c44.png" className="absolute top-23 left-255 w-40 h-40 z-50" alt="Extra 5" />
       <img
       src="/vc.png"
@@ -71,6 +77,17 @@ const EnvironmentPage = () => {
       alt="Extra 6"
       onClick={() => navigate("/Landing")}
     />
+=======
+      <Link to = "/Home">
+      <img
+        src="/c44.png"
+        className="absolute top-23 left-255 w-40 h-40 z-50"
+        alt="Extra 5"
+      />
+      </Link>
+    
+      <img src="/vc.png" className="absolute bottom-90 left-210 w-30 h-30 z-50" alt="Extra 6" />
+>>>>>>> b46b1745a0f86b2c7a80c1f207c441d51cb486c6
       <img src="/boa.png" className="absolute bottom-120 left-50 w-36 h-36 z-50" alt="Extra 7" />
       <img src="info.png" className="absolute top-120 right-130 w-26 h-56 z-50" alt="Extra 8" />
       
