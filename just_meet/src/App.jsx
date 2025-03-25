@@ -28,6 +28,9 @@ function App() {
         <Route path="/landing" element={<Landing />} />
         <Route path="/environment" element={<EnvironmentPage />} />
         <Route path="/login" element={<PixelAuthPage/>} />
+        <Route path = "/chat" element = {<Chat/>} />
+        
+
       </Routes>
     </Router>
   );

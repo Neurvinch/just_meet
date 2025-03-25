@@ -5,8 +5,8 @@
     font-family: 'Press Start 2P', cursive;
   }
   
-  .rotate-3d-box {
+  /* .rotate-3d-box {
     @apply animate-rotate-3d;
     perspective: 1000px;
-  }
+  } */
   
