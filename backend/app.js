@@ -6,7 +6,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 const chatRoutes = require('./routes/chatRoutes');
+const pollRoutes = require('./routes/PollRoutes');
 const Message = require('./models/MessageSchema');
+const Poll = require('./models/PollSchema');
 
 const app = express();
 const server = http.createServer(app);
@@ -27,6 +29,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/chat', chatRoutes);
+app.use('/api/polls', pollRoutes)
 
 // MongoDB Connection
 mongoose
@@ -54,6 +57,55 @@ io.on('connection', async (socket) => {
       io.emit('message', message); // Broadcast to all connected users
     } catch (err) {
       console.error('Failed to save message:', err);
+    }
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
+});
+
+io.on('connection', async (socket) => {
+  console.log('User connected:', socket.id);
+
+  // Send initial messages
+  try {
+    const messages = await Message.find().sort({ createdAt: -1 }).limit(50);
+    socket.emit('initMessages', messages.reverse());
+  } catch (err) {
+    console.error('Failed to load initial messages:', err);
+  }
+
+  // Send initial polls
+  try {
+    const polls = await Poll.find();
+    socket.emit('initPolls', polls);
+  } catch (err) {
+    console.error('Failed to load initial polls:', err);
+  }
+
+  // Handle incoming messages
+  socket.on('sendMessage', async (msg) => {
+    try {
+      const message = new Message(msg);
+      await message.save();
+      io.emit('message', message);
+    } catch (err) {
+      console.error('Failed to save message:', err);
+    }
+  });
+
+  // Handle votes
+  socket.on('vote', async ({ pollId, optionIndex }) => {
+    try {
+      const poll = await Poll.findById(pollId);
+      if (poll) {
+        poll.options[optionIndex].votes += 1;
+        await poll.save();
+        io.emit('pollUpdate', await Poll.find());
+      }
+    } catch (err) {
+      console.error('Failed to vote:', err);
     }
   });
 
