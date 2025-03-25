@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import landingImage from "../assets/tup.png"; // Your image
+import landingImage from "/money.png"; // Your image
 
 const Landing = () => {
   const navigate = useNavigate();
 
   const goToCreateMeeting = () => {
-    navigate("/home"); // Redirects to Home Page (WebRTC)
+    navigate("/"); // Redirects to Home Page (WebRTC)
   };
 
   return (

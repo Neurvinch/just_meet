@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const CharacterMovement = () => {
+const EnvironmentPage = () => {
   const [position, setPosition] = useState({ x: 50, y: 50 });
   const [direction, setDirection] = useState("down");
+  const navigate = useNavigate();
+
 
   useEffect(() => {
+
     const handleKeyDown = (e) => {
       switch (e.key) {
         case "ArrowUp":
@@ -47,10 +51,10 @@ const CharacterMovement = () => {
   }, []);
 
   const characterImages = {
-    up: "/P1.png",
-    down: "/P4.png",
-    left: "/p2.webp",
-    right: "/p6.png",
+    up: "/c1.png",
+    down: "/c1.png",
+    left: "/c1.png",
+    right: "/c1.png",
   };
 
   return (
@@ -61,7 +65,12 @@ const CharacterMovement = () => {
       <img src="/c.png" className="absolute bottom-40 left-130 w-36 h-46 z-50" alt="Extra 3" />
       <img src="/board.png" className="absolute bottom-50 right-30 w-16 h-30 z-50" alt="Extra 4" />
       <img src="/c44.png" className="absolute top-23 left-255 w-40 h-40 z-50" alt="Extra 5" />
-      <img src="/vc.png" className="absolute bottom-90 left-210 w-30 h-30 z-50" alt="Extra 6" />
+      <img
+      src="/vc.png"
+      className="absolute bottom-90 left-210 w-30 h-30 z-50 cursor-pointer"
+      alt="Extra 6"
+      onClick={() => navigate("/Landing")}
+    />
       <img src="/boa.png" className="absolute bottom-120 left-50 w-36 h-36 z-50" alt="Extra 7" />
       <img src="info.png" className="absolute top-120 right-130 w-26 h-56 z-50" alt="Extra 8" />
       
@@ -80,7 +89,7 @@ const CharacterMovement = () => {
         className="absolute transition-all duration-100 ease-in-out z-20"
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       >
-        <img src={characterImages[direction]} alt="Character" className="w-16 h-16" />
+        <img src={characterImages[direction]} alt="Character" className="w-16 h-36" />
       </div>
 
       {/* Instructions */}
@@ -91,4 +100,4 @@ const CharacterMovement = () => {
   );
 };
 
-export default CharacterMovement;
+export default EnvironmentPage;
