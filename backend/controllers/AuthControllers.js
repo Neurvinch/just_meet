@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const {doHash , doHashValidation, hmacProcess} = require("../utils/hashing")
-const transport = require("../Midddleware/sendMail");
+const transport = require("../Middlewares/Mail");
 const userModel = require("../models/UserModel")
 
 exports.register = async (req , res) => {
