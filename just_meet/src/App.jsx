@@ -43,7 +43,7 @@ function App() {
         <Route path="/slide" element={<SlidePuzzle />} />
         <Route path="/treasure" element={<TreasureToss />} />
 
-        <Route path="/login" element={<Login />} /> 
+        {/* <Route path="/login" element={<Login />} />  */}
         <Route path = "/board"   element={<DrawingBoard/>} />
 <<<<<<< HEAD
         <Route path = "/Chat"   element={<Chat/>} />
