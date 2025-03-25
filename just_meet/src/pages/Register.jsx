@@ -58,7 +58,7 @@ const Register = () => {
             formData , password : e.target.value})} />
 
             <button type="submit">Register</button>
-            
+
         </form>
     </div>
   )

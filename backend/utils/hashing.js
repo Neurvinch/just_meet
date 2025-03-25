@@ -1,4 +1,4 @@
-const bcrpt = require ("bcryptjs")
+const bcrypt = require ("bcrypt")
 const {createHmac} = require("crypto")
 
 exports.doHash = ( value , saltValue) => {
@@ -7,7 +7,7 @@ exports.doHash = ( value , saltValue) => {
 }
 
 exports.doHashValidation = (value , hashedValue) =>{
-    const result = bcrpt.compare(value , hashedValue)
+    const result = bcrypt.compare(value , hashedValue)
     return result
 }
 

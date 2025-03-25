@@ -1,7 +1,8 @@
 
 import './App.css'
-import ForgotPassword from './pages/ForgotPasssword'
+//import ForgotPassword from './pages/ForgotPasssword'
 import Login from './pages/Login'
+import Payement from './pages/Payement'
 import Register from './pages/Register'
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
 
   return (
     <>
-    <ForgotPassword/>
+    {/* <ForgotPassword/> */}
+    <Payement/>
     <Register/>
   <Login/>
     </>

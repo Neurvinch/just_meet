@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const AuthR = require("./routes/AuthRoutes");
-
+const pay = require("./routes/PayementRoutes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const app = express();
@@ -15,7 +15,7 @@ app.use(cors({
     credentials: true
 }))
 
-app.use("/api",AuthR);
+app.use("/api",AuthR , pay);
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {

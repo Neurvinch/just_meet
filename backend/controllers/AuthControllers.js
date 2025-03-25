@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const {doHash , doHashValidation, hmacProcess} = require("../utils/hashing")
 const transport = require("../Middlewares/Mail");
+
 const userModel = require("../models/UserModel")
 
 exports.register = async (req , res) => {
@@ -70,7 +71,7 @@ exports.register = async (req , res) => {
                     name : existingUser.name
 
                 },
-                process.env.SECRET_KEY ,
+                process.env.SECRET_KEY,
                 {expiresIn : "1d"}
                );
 
