@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const Login = () => {
     const [formData , setFormData] = useState({
@@ -7,7 +10,7 @@ const Login = () => {
     })
 
      const [error , setError] = useState("")
-     const [showPassword , setShowPassword] = useState(false);
+
      const [loading , setLoading] = useState(false);
 
      const handleSubmit = async (e) => {
@@ -42,7 +45,7 @@ const Login = () => {
              />
 
              <input
-              type={showPassword ? "text" : "password"}
+              type= "password"
               placeholder='Password'
               value={formData.password}
               onChange={(e) => setFormData({...formData , password : e.target.value})}
