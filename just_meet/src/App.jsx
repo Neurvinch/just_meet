@@ -14,9 +14,13 @@ import Game2048 from './components/Game2048';
 import MathGame from './components/MathGame';
 import SlidePuzzle from './components/SlidePuzzle';
 import TreasureToss from './components/TreasureToss';
-import Login from "./Pages/Login";
+
+
 import DrawingBoard from "./components/DrawBoard";
 import Chat from "./Pages/Chat";
+
+
+import Announcements from "./pages/Announcements";
 
 
 function App() {
@@ -27,7 +31,7 @@ function App() {
         <Route path="/" element={<Mainpage />} />
         <Route path="/landing" element={<Landing />} />
         <Route path="/environment" element={<EnvironmentPage />} />
-        <Route path="/pixelauthpage" element={<PixelAuthPage />} /> {/* ✅ Path fixed */}
+        <Route path="/pixelauthpage" element={<PixelAuthPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/room/:roomId" element={<Room />} />
         <Route path="/chatbot" element={<Chatbot />} />
@@ -38,9 +42,15 @@ function App() {
         <Route path="/math" element={<MathGame />} />
         <Route path="/slide" element={<SlidePuzzle />} />
         <Route path="/treasure" element={<TreasureToss />} />
+
         <Route path="/login" element={<Login />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
+<<<<<<< HEAD
         <Route path = "/Chat"   element={<Chat/>} />
+=======
+        <Route path="/ann" element={<Announcements/>}   />
+
+>>>>>>> c83d3dd49b27d25d6f1a39eed2645cdcf1c88521
       </Routes>
     </Router>
   );

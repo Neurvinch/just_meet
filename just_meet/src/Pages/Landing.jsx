@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import landingImage from "/money.png"; // Your image
+import landingImage from "/p4.png"; // Your image
 
 const Landing = () => {
   const navigate = useNavigate();
