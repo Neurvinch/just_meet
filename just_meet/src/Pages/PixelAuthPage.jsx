@@ -177,6 +177,9 @@ const AuthPage = () => {
               >
                 {loading ? "Processing..." : isSignup ? "Create Account" : "Sign In"}
               </button>
+              <a href="/forgotPasssword"
+               className="w-full p-3 bg-black border-2 border-white text-white rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+              > Forgot Password ?</a>
               
               {error && <p className="text-red-500 text-center mt-2">{error}</p>}
               {success && <p className="text-green-500 text-center mt-2">{success}</p>}

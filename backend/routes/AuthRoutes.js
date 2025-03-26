@@ -1,7 +1,7 @@
 const express =  require("express");
 const {signOut, register , login , changePassword , sendForgotPasswordCode , verifyForgotPasswordCode} = require("../controllers/AuthControllers");
+const {identifer} = require("../Middlewares/Identifier");
 
-const { identifer} = require("../Middlewares/Identifier");
 
 const router = express.Router();
 
@@ -11,7 +11,8 @@ router.get("/logout" , identifer , signOut);
 
 router.patch(
     "/changePassword",
-    identifer(["student", "hod", "staff"]),
+    identifer ,
+    
     changePassword
   );
   

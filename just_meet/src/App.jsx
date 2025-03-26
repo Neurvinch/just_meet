@@ -14,6 +14,7 @@ import Game2048 from './components/Game2048';
 import MathGame from './components/MathGame';
 import SlidePuzzle from './components/SlidePuzzle';
 import TreasureToss from './components/TreasureToss';
+import fg from "./pages/ForgotPasssword"
 
 
 import DrawingBoard from "./components/DrawBoard";
@@ -22,6 +23,7 @@ import Chat from "./Pages/Chat";
 
 import Announcements from "./pages/Announcements";
 import Signout from "./pages/Signout";
+import ForgotPassword from "./pages/ForgotPasssword";
 
 
 function App() {
@@ -47,6 +49,7 @@ function App() {
         <Route path = "/board"   element={<DrawingBoard/>} />
         <Route path = "/Chat"   element={<Chat/>} />
         <Route path="/signout" element={<Signout/>}  />
+        <Route path="forgotPasssword" element={<ForgotPassword/>}  />
       </Routes>
     </Router>
   );
