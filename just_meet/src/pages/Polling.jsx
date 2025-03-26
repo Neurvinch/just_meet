@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2 } from 'lucide-react';
+import io from 'socket.io-client';
+
+// Connect to the backend Socket.IO server
+const socket = io('http://localhost:5000', {
+  withCredentials: true,
+});
 
 const PixelPolling = () => {
   const [polls, setPolls] = useState([]);
@@ -51,33 +57,39 @@ const PixelPolling = () => {
   const handlePollSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
-    if (newPoll.question && newPoll.options.every(opt => opt.trim())) {
+    setError('');
+
+    if (newPoll.question && newPoll.options.every((opt) => opt.trim())) {
       try {
         const response = await fetch('http://localhost:5000/api/polls', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             question: newPoll.question,
-            options: newPoll.options.map(text => ({ text })),
+            options: newPoll.options.map((text) => ({ text })),
           }),
         });
-        
+
+        if (!response.ok) throw new Error('Failed to create poll');
         const createdPoll = await response.json();
         setPolls([...polls, createdPoll]);
         setNewPoll({ question: '', options: ['', ''] });
       } catch (error) {
         console.error('Failed to create poll:', error);
+        setError('Failed to create poll');
       } finally {
         setLoading(false);
       }
+    } else {
+      setError('Please fill out all fields');
+      setLoading(false);
     }
   };
 
   const addOption = () => {
-    setNewPoll({ 
-      ...newPoll, 
-      options: [...newPoll.options, ''] 
+    setNewPoll({
+      ...newPoll,
+      options: [...newPoll.options, ''],
     });
   };
 
@@ -85,7 +97,7 @@ const PixelPolling = () => {
     if (newPoll.options.length > 2) {
       setNewPoll({
         ...newPoll,
-        options: newPoll.options.filter((_, index) => index !== indexToRemove)
+        options: newPoll.options.filter((_, index) => index !== indexToRemove),
       });
     }
   };
@@ -96,8 +108,8 @@ const PixelPolling = () => {
       <div className="absolute inset-0 pointer-events-none">
         <div className="grid grid-cols-12 grid-rows-12 h-full w-full opacity-10">
           {[...Array(144)].map((_, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="border border-gray-300 dark:border-gray-700"
             ></div>
           ))}
@@ -106,13 +118,15 @@ const PixelPolling = () => {
 
       {/* Background Images */}
       {backgroundImages.map((image, index) => (
-        <div 
-          key={index} 
-          className={`absolute ${image.top || ''} ${image.bottom || ''} ${image.left || ''} ${image.right || ''} opacity-20 z-0`}
+        <div
+          key={index}
+          className={`absolute ${image.top || ''} ${image.bottom || ''} ${
+            image.left || ''
+          } ${image.right || ''} opacity-20 z-0`}
         >
-          <img 
-            src={image.src} 
-            alt={`Background image ${index + 1}`} 
+          <img
+            src={image.src}
+            alt={`Background image ${index + 1}`}
             className="rounded-2xl shadow-lg transform rotate-6 hover:rotate-0 transition-all duration-300 w-30 h-30"
           />
         </div>
@@ -124,14 +138,14 @@ const PixelPolling = () => {
           <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 z-20">
             <img src="/pp.webp" alt="Polling Illustration" className="w-40 h-40" />
           </div>
-          
+
           <div className="bg-black rounded-2xl shadow-2xl border-4 border-white p-8 pt-24 relative">
             <div className="absolute inset-0 border-4 border-white opacity-50 pointer-events-none"></div>
-            
+
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold text-white tracking-wider">Just_Poll</h1>
             </div>
-            
+
             {/* Poll Creation Form */}
             <form className="space-y-6 text-sm" onSubmit={handlePollSubmit}>
               <input
@@ -142,7 +156,6 @@ const PixelPolling = () => {
                 className="w-full p-3 bg-black border-2 border-white text-white rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
                 required
               />
-              
               {newPoll.options.map((opt, idx) => (
                 <div key={idx} className="flex space-x-2">
                   <input
@@ -168,7 +181,6 @@ const PixelPolling = () => {
                   )}
                 </div>
               ))}
-              
               <div className="flex justify-between space-x-2">
                 <button
                   type="button"
@@ -182,16 +194,17 @@ const PixelPolling = () => {
                   className="flex-grow bg-green-500 text-black p-3 rounded-lg hover:bg-gray-200 transition-colors"
                   disabled={loading}
                 >
-                  {loading ? "Creating..." : "Create Poll"}
+                  {loading ? 'Creating...' : 'Create Poll'}
                 </button>
               </div>
+              {error && <p className="text-red-500 text-center">{error}</p>}
             </form>
 
             {/* Existing Polls */}
             <div className="mt-8 space-y-4">
               {polls.map((poll) => (
-                <div 
-                  key={poll._id} 
+                <div
+                  key={poll._id}
                   className="bg-gray-900 rounded-lg border-2 border-white p-4"
                 >
                   <h2 className="text-white text-lg mb-4">{poll.question}</h2>
@@ -200,9 +213,7 @@ const PixelPolling = () => {
                       <button
                         key={idx}
                         onClick={() => vote(poll._id, idx)}
-                        className="w-full p-3 bg-black border-2 border-white text-white rounded-lg 
-                          hover:bg-green-500 hover:text-black transition-colors 
-                          flex justify-between items-center"
+                        className="w-full p-3 bg-black border-2 border-white text-white rounded-lg hover:bg-green-500 hover:text-black transition-colors flex justify-between items-center"
                       >
                         <span>{opt.text}</span>
                         <span className="ml-2 text-gray-400">{opt.votes} votes</span>

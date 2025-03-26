@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Mainpage from "./Pages/Mainpage";
 import Landing from "./Pages/Landing";
-import EnvironmentPage from "./Pages/Environment";
+import EnvironmentPage from "./Pages/environment.jsx";
 import PixelAuthPage from "./Pages/PixelAuthPage";
 import Home from "./Pages/Home";
 import Room from "./Pages/Room";
