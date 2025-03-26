@@ -61,31 +61,63 @@ const EnvironmentPage = () => {
   return (
     <div className="relative w-full h-screen">
       {/* Additional Images */}
-       <img src="/mud.webp" className="absolute bottom-10 right-90 w-36 h-36 z-50" alt="Extra 1" /> 
-      <Link to = "/pay">
-      <img src="/money.png" className="absolute top-90 left-140 w-26 h-56 z-50" alt="Extra 2" />
-      </Link>
-      <Link to = "/vote">
-      <img src="/vote.png" className="absolute bottom-30 left-130 w-36 h-36 z-50" alt="Extra 3" />
-      </Link>
-      <Link to = "/Games"><img src="/board.png" className="absolute bottom-40 right-30 w-26 h-30 z-50" alt="Extra 4" />
-      </Link>
-      <Link to = "/Home">
-      <img
-        src="/c44.png"
-        className="absolute top-23 left-255 w-40 h-40 z-50"
-        alt="Extra 5"
-      />
-      </Link>
-      <Link to="/Chat">
-      <img src="/vc.png" className="absolute bottom-90 left-210 w-30 h-30 z-50" alt="Extra 6" />
-      </Link>
-      <Link to = "/board">
-      <img src="/boa.png" className="absolute bottom-120 left-50 w-36 h-36 z-50" alt="Extra 7" />
-      </Link>
-      <Link to = "/chatbot">
-      <img src="info.png" className="absolute top-110 right-130 w-26 h-56 z-50" alt="Extra 8" />
-      </Link>
+      {/* Additional Images */}
+<Link to="/">
+  <img 
+    src="/mud.webp" 
+    className="absolute bottom-10 right-90 w-36 h-36 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 1" 
+  />
+</Link>
+<Link to="/pay">
+  <img 
+    src="/money.png" 
+    className="absolute top-90 left-140 w-26 h-56 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 2" 
+  />
+</Link>
+<Link to="/vote">
+  <img 
+    src="/vote.png" 
+    className="absolute bottom-30 left-130 w-36 h-36 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 3" 
+  />
+</Link>
+<Link to="/Games">
+  <img 
+    src="/board.png" 
+    className="absolute bottom-40 right-30 w-26 h-30 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 4" 
+  />
+</Link>
+<Link to="/Home">
+  <img 
+    src="/c44.png" 
+    className="absolute top-23 left-255 w-40 h-40 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 5" 
+  />
+</Link>
+<Link to="/Chat">
+  <img 
+    src="/vc.png" 
+    className="absolute bottom-90 left-210 w-30 h-30 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 6" 
+  />
+</Link>
+<Link to="/board">
+  <img 
+    src="/boa.png" 
+    className="absolute bottom-120 left-50 w-36 h-36 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 7" 
+  />
+</Link>
+<Link to="/chatbot">
+  <img 
+    src="info.png" 
+    className="absolute top-110 right-130 w-26 h-56 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 8" 
+  />
+</Link>
       {/* New Image (Bottom Layer) */}
       <div className="absolute bottom-80 left-0 w-full h-full z-0">
         <img src="/cld.avif" alt="Bottom Layer" className="w-full h-full filter brightness-70 contrast-125" />
