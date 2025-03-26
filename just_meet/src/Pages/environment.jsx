@@ -77,7 +77,7 @@ const EnvironmentPage = () => {
       </Link>
     
       <img src="/vc.png" className="absolute bottom-90 left-210 w-30 h-30 z-50" alt="Extra 6" />
-      <Link to = "/Games">
+      <Link to = "/board">
       <img src="/boa.png" className="absolute bottom-120 left-50 w-36 h-36 z-50" alt="Extra 7" />
       </Link>
       <Link to = "/chatbot">
