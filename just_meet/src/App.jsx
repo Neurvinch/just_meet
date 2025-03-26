@@ -14,12 +14,12 @@ import Game2048 from './components/Game2048';
 import MathGame from './components/MathGame';
 import SlidePuzzle from './components/SlidePuzzle';
 import TreasureToss from './components/TreasureToss';
-import fg from "./pages/ForgotPasssword"
+
 
 
 import DrawingBoard from "./components/DrawBoard";
 import Chat from "./Pages/Chat";
-
+import Polling from "./pages/Polling"
 
 import Announcements from "./pages/Announcements";
 import Signout from "./pages/Signout";
@@ -48,6 +48,7 @@ function App() {
         <Route path="/login" element={<PixelAuthPage />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
         <Route path = "/Chat"   element={<Chat/>} />
+        <Route path = "/poll" element ={<Polling/>}  />
 
         <Route path="/ann" element={<Announcements/>}   />
 
