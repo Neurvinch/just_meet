@@ -152,14 +152,7 @@ const AuthPage = () => {
                 </>
               )}
 
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full p-3 bg-black border-2 border-white text-white rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-                    required
-                  />
+                 
               
               <input
                 type="password"

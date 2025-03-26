@@ -14,7 +14,7 @@ import Game2048 from './components/Game2048';
 import MathGame from './components/MathGame';
 import SlidePuzzle from './components/SlidePuzzle';
 import TreasureToss from './components/TreasureToss';
-import fg from "./pages/ForgotPasssword"
+
 
 
 import DrawingBoard from "./components/DrawBoard";
@@ -24,7 +24,7 @@ import  PixelPolling from "./Pages/Polling.jsx"
 import Announcements from "./pages/Announcements";
 import Signout from "./pages/Signout";
 import ForgotPassword from "./pages/ForgotPasssword";
-
+import TaskList  from "./Pages/TaskList";
 
 function App() {
   return (
@@ -48,18 +48,15 @@ function App() {
         <Route path="/login" element={<PixelAuthPage />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
         <Route path = "/Chat"   element={<Chat/>} />
-<<<<<<< HEAD
         <Route path="/ann" element={<Announcements/>}   />
         <Route path="/vote" element={< PixelPolling/>}   />
         <Route path="/signout" element={<Signout/>}  />
-=======
-
+        <Route path="/TaskList" element={<TaskList/>}  />
         <Route path="/ann" element={<Announcements/>}   />
 
 
         <Route path="/signout" element={<Signout/>}  />
         <Route path="forgotPasssword" element={<ForgotPassword/>}  />
->>>>>>> 480a80d1a9677258f8e39b7b7cd760f19c8456c1
       </Routes>
     </Router>
   );
