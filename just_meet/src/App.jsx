@@ -24,7 +24,7 @@ import  PixelPolling from "./Pages/Polling.jsx"
 import Announcements from "./pages/Announcements";
 import Signout from "./pages/Signout";
 import ForgotPassword from "./pages/ForgotPasssword";
-import TaskList  from "./Pages/TaskList";
+import TaskList  from "./pages/TaskList.jsx";
 
 function App() {
   return (
