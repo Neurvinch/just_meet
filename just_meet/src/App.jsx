@@ -42,7 +42,6 @@ function App() {
         <Route path="/math" element={<MathGame />} />
         <Route path="/slide" element={<SlidePuzzle />} />
         <Route path="/treasure" element={<TreasureToss />} />
-
         <Route path="/login" element={<PixelAuthPage />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
         <Route path = "/Chat"   element={<Chat/>} />
