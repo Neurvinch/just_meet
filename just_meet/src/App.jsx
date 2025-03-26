@@ -45,12 +45,9 @@ function App() {
 
         {/* <Route path="/login" element={<Login />} />  */}
         <Route path = "/board"   element={<DrawingBoard/>} />
-<<<<<<< HEAD
         <Route path = "/Chat"   element={<Chat/>} />
-=======
         <Route path="/ann" element={<Announcements/>}   />
 
->>>>>>> c83d3dd49b27d25d6f1a39eed2645cdcf1c88521
       </Routes>
     </Router>
   );
