@@ -21,6 +21,7 @@ import Chat from "./Pages/Chat";
 
 
 import Announcements from "./pages/Announcements";
+import Signout from "./pages/Signout";
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/login" element={<PixelAuthPage />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
         <Route path = "/Chat"   element={<Chat/>} />
+        <Route path="/signout" element={<Signout/>}  />
       </Routes>
     </Router>
   );
