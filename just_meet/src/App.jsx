@@ -15,6 +15,7 @@ import MathGame from './components/MathGame';
 import SlidePuzzle from './components/SlidePuzzle';
 import TreasureToss from './components/TreasureToss';
 import Login from "./Pages/Login";
+import DrawingBoard from "./components/DrawBoard";
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
         <Route path="/math" element={<MathGame />} />
         <Route path="/slide" element={<SlidePuzzle />} />
         <Route path="/treasure" element={<TreasureToss />} />
-        <Route path="/login" element={<Login />} /> {/* ✅ Made lowercase */}
+        <Route path="/login" element={<Login />} /> 
+        <Route path = "/board"   element={<DrawingBoard/>} />
       </Routes>
     </Router>
   );

@@ -144,7 +144,22 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
   });
+
+  socket.on('draw', (data) => {
+    socket.broadcast.emit('draw', data); // Broadcast to all other clients
+  });
+
+  // Clear canvas
+  socket.on('clearCanvas', () => {
+    io.emit('clearCanvas'); // Broadcast to all clients
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
 });
+
+   
 
 // Start Server
 const PORT = process.env.PORT || 5000;
