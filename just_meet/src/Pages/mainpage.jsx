@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Mainpage = () => {
   const navigate = useNavigate(); 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+    <div className="relative min-h-screen pixel-font bg-black text-white overflow-hidden">
       {/* Full Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -64,20 +64,13 @@ const Mainpage = () => {
             <motion.button 
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              onClick={() => navigate('/login')}
               className="bg-lime-500 text-black px-10 py-4 rounded-full font-bold hover:bg-lime-400 transition duration-300 flex items-center space-x-2"
             >
               <Rocket className="mr-2"     />
               Login
             </motion.button>
-            <motion.button 
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => navigate('/login')}
-              className="border-2 border-white px-10 py-4 rounded-full hover:bg-white/10 transition duration-300 flex items-center space-x-2"
-            >
-              <Globe className="mr-2" />
-              Explore
-            </motion.button>
+            
           </div>
         </motion.div>
       </div>
