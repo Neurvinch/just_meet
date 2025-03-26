@@ -19,6 +19,7 @@ const ForgotPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [step, setStep] = useState("send");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   
 
