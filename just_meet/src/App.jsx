@@ -53,9 +53,7 @@ function App() {
 
 
         <Route path="/signout" element={<Signout/>}  />
-
         <Route path="forgotPasssword" element={<ForgotPassword/>}  />
-
       </Routes>
     </Router>
   );
