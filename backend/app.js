@@ -5,17 +5,16 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
-const Announcement = require('./routes/announcemnet')
+const announcementRoutes = require('./routes/announcemnet'); // Fixed typo
 const chatRoutes = require('./routes/chatRoutes');
 const pollRoutes = require('./routes/PollRoutes');
 const taskRoutes = require('./routes/TaskRoutes');
-const  pay = require("./routes/PayementRoutes")
-const MessageSchema = require('./models/MessageSchema');
-const PollSchema = require('./models/PollSchema');
-const TaskSchema = require('./models/TaskSchema');
-
-
-
+const payRoutes = require('./routes/PayementRoutes');
+const authRoutes = require('./routes/AuthRoutes');
+const Message = require('./models/MessageSchema');
+const Poll = require('./models/PollSchema');
+const Task = require('./models/TaskSchema');
+const Announcement = require('./models/AnnouncementSChema'); // Added import
 
 const app = express();
 const server = http.createServer(app);
@@ -23,32 +22,28 @@ const io = new Server(server, {
   cors: {
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // allow requests from this origin
-  credentials: true,               // enable set cookie and other credentials
+  origin: 'http://localhost:5173',
+  credentials: true,
 }));
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-
-  connectTimeoutMS: 10000,
-};
 app.use(express.json());
 app.use((req, res, next) => {
-  req.io = io; // Attach Socket.IO to request
+  req.io = io;
   next();
 });
 
 // Routes
+app.use('/api', authRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/polls', pollRoutes);
-app.use('/api/tasks', taskRoutes); // Fixed typo
-app.use('/api',pay)
-app.use('/api/announcements' ,Announcement )
+app.use('/api/tasks', taskRoutes);
+app.use('/api/pay', payRoutes);
+app.use('/api/announcements', announcementRoutes);
 
 // MongoDB Connection
 mongoose
@@ -56,13 +51,18 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
+// Debug Mongoose connection
+mongoose.connection.on('connected', () => console.log('Mongoose connected to DB'));
+mongoose.connection.on('error', (err) => console.error('Mongoose connection error:', err));
+
 // Socket.IO for real-time features
 io.on('connection', async (socket) => {
   console.log('User connected:', socket.id);
 
   // Send initial messages
   try {
-    const messages = await MessageSchema.find().sort({ createdAt: -1 }).limit(50);
+    console.log('Fetching initial messages...');
+    const messages = await Message.find().sort({ createdAt: -1 }).limit(50);
     socket.emit('initMessages', messages.reverse());
   } catch (err) {
     console.error('Failed to load initial messages:', err);
@@ -70,7 +70,7 @@ io.on('connection', async (socket) => {
 
   // Send initial polls
   try {
-    const polls = await PollSchema.find();
+    const polls = await Poll.find();
     socket.emit('initPolls', polls);
   } catch (err) {
     console.error('Failed to load initial polls:', err);
@@ -78,18 +78,26 @@ io.on('connection', async (socket) => {
 
   // Send initial tasks
   try {
-    const tasks = await TaskSchema.find();
+    const tasks = await Task.find();
     socket.emit('initTasks', tasks);
   } catch (err) {
     console.error('Failed to load initial tasks:', err);
   }
 
+  // Send initial announcements
+  try {
+    const announcements = await Announcement.find().sort({ createdAt: -1 });
+    socket.emit('initAnnouncements', announcements);
+  } catch (err) {
+    console.error('Failed to load initial announcements:', err);
+  }
+
   // Handle incoming messages
   socket.on('sendMessage', async (msg) => {
     try {
-      const message = new MessageSchema(msg);
+      const message = new Message(msg);
       await message.save();
-      io.emit('message', message); // Broadcast to all
+      io.emit('message', message);
     } catch (err) {
       console.error('Failed to save message:', err);
     }
@@ -98,75 +106,50 @@ io.on('connection', async (socket) => {
   // Handle votes
   socket.on('vote', async ({ pollId, optionIndex }) => {
     try {
-      const poll = await PollSchema.findById(pollId);
+      const poll = await Poll.findById(pollId);
       if (poll) {
         poll.options[optionIndex].votes += 1;
         await poll.save();
-        io.emit('pollUpdate', await PollSchema.find());
+        io.emit('pollUpdate', await Poll.find());
       }
     } catch (err) {
       console.error('Failed to vote:', err);
     }
   });
 
-  // Handle task status updates (for TaskList)
+  // Handle task status updates
   socket.on('updateTaskStatus', async ({ taskId, status }) => {
     try {
-      const task = await TaskSchema.findByIdAndUpdate(
-        taskId,
-        { status },
-        { new: true }
-      );
+      const task = await Task.findByIdAndUpdate(taskId, { status }, { new: true });
       if (task) {
-        io.emit('taskUpdate', await TaskSchema.find());
+        io.emit('taskUpdate', await Task.find());
       }
     } catch (err) {
       console.error('Failed to update task status:', err);
     }
   });
 
-  // Handle task drag-and-drop updates (for TaskBoard)
+  // Handle task drag-and-drop updates
   socket.on('taskMoved', async (updatedTasks) => {
     try {
-      // Replace all tasks in MongoDB (simplified for demo)
-      await TaskSchema.deleteMany({});
-      await TaskSchema.insertMany(updatedTasks);
+      await Task.deleteMany({});
+      await Task.insertMany(updatedTasks);
       io.emit('taskUpdate', updatedTasks);
     } catch (err) {
       console.error('Failed to update tasks:', err);
     }
   });
 
-  socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
-  });
-});
-
-io.on("connection", (socket) => {
-  console.log("New user connected:", socket.id);
-
-  socket.on("join-room", (roomId, userId) => {
-    socket.join(roomId);
-    socket.to(roomId).emit("user-connected", userId);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User disconnected:", socket.id);
-  });
-
+  // Handle drawing events
   socket.on('draw', (data) => {
-    socket.broadcast.emit('draw', data); // Broadcast to all other clients
+    socket.broadcast.emit('draw', data);
   });
 
-  // Clear canvas
   socket.on('clearCanvas', () => {
-    io.emit('clearCanvas'); // Broadcast to all clients
+    io.emit('clearCanvas');
   });
 
-  socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
-  });
-
+  // Handle announcements
   socket.on('createAnnouncement', async (announcement) => {
     try {
       const newAnnouncement = new Announcement(announcement);
@@ -177,12 +160,16 @@ io.on("connection", (socket) => {
     }
   });
 
+  // Handle room joining
+  socket.on('join-room', (roomId, userId) => {
+    socket.join(roomId);
+    socket.to(roomId).emit('user-connected', userId);
+  });
+
   socket.on('disconnect', () => {
     console.log('User disconnected:', socket.id);
   });
 });
-
-   
 
 // Start Server
 const PORT = process.env.PORT || 5000;

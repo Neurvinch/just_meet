@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import {useNavigate} from "react-router-dom"
 
-const PixelAuthPage = () => {
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const AuthPage = () => {
   const [isSignup, setIsSignup] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
@@ -9,6 +13,8 @@ const PixelAuthPage = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
 
   // Background images with random positioning
   const backgroundImages = [
@@ -19,14 +25,50 @@ const PixelAuthPage = () => {
     { src: "/p6.png", bottom: "bottom-10", right: "right-1/3" }
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulated submit logic
-    setTimeout(() => {
+    setError(null);
+    setSuccess(null);
+
+    try {
+      if (isSignup) {
+        // Registration: Ensure all fields are filled
+        if (!formData.name || !formData.email || !formData.password) {
+          setError("Please fill all fields");
+          setLoading(false);
+          return;
+        }
+        const res = await axios.post(`${apiUrl}/api/register`, formData);
+        if (res.data.success) {
+          setSuccess(res.data.message || "Registration successful!");
+          setFormData({ name: '', email: '', password: '' });
+        } else {
+          setError("Registration failed");
+        }
+      } else {
+        // Login: Only require name and password
+        if (!formData.name || !formData.password) {
+          setError("Please fill all fields");
+          setLoading(false);
+          return;
+        }
+        const loginData = { name: formData.name, password: formData.password };
+        const res = await axios.post(`${apiUrl}/api/login`, loginData);
+        if (res.data.success) {
+          const token = res.data.token;
+          localStorage.setItem("token", token);
+          setSuccess("Login successful!");
+            navigate("/environment")
+        } else {
+          setError("Login failed");
+        }
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || err.message);
+    } finally {
       setLoading(false);
-      setError(null);
-    }, 2000);
+    }
   };
 
   return (
@@ -90,24 +132,34 @@ const PixelAuthPage = () => {
             
             <form className="space-y-6 pixel-font text-sm" onSubmit={handleSubmit}>
               {isSignup && (
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full p-3 bg-black border-2 border-white text-white rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-                  required
-                />
+                <>
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full p-3 bg-black border-2 border-white text-white rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full p-3 bg-black border-2 border-white text-white rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                    required
+                  />
+                </>
               )}
-              
-              <input
-                type="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full p-3 bg-black border-2 border-white text-white rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-                required
-              />
+
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full p-3 bg-black border-2 border-white text-white rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                    required
+                  />
               
               <input
                 type="password"
@@ -127,6 +179,7 @@ const PixelAuthPage = () => {
               </button>
               
               {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+              {success && <p className="text-green-500 text-center mt-2">{success}</p>}
             </form>
           </div>
         </div>
@@ -135,4 +188,4 @@ const PixelAuthPage = () => {
   );
 };
 
-export default PixelAuthPage;
+export default AuthPage;
