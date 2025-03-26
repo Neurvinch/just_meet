@@ -25,7 +25,7 @@ function App() {
         <Route path="/" element={<Mainpage />} />
         <Route path="/landing" element={<Landing />} />
         <Route path="/environment" element={<EnvironmentPage />} />
-        <Route path="/pixelauthpage" element={<PixelAuthPage />} /> {/* ✅ Path fixed */}
+        <Route path="/pixelauthpage" element={<PixelAuthPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/room/:roomId" element={<Room />} />
         <Route path="/chatbot" element={<Chatbot />} />
