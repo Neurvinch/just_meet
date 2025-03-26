@@ -17,6 +17,8 @@ import TreasureToss from './components/TreasureToss';
 
 
 import DrawingBoard from "./components/DrawBoard";
+import Chat from "./Pages/Chat";
+
 
 import Announcements from "./pages/Announcements";
 
@@ -43,8 +45,12 @@ function App() {
 
         <Route path="/login" element={<PixelAuthPage />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
+<<<<<<< HEAD
+        <Route path = "/Chat"   element={<Chat/>} />
+=======
         <Route path="/ann" element={<Announcements/>}   />
 
+>>>>>>> c83d3dd49b27d25d6f1a39eed2645cdcf1c88521
       </Routes>
     </Router>
   );
