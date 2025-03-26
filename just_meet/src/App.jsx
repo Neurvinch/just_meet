@@ -48,8 +48,14 @@ function App() {
         <Route path="/login" element={<PixelAuthPage />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
         <Route path = "/Chat"   element={<Chat/>} />
+
+        <Route path="/ann" element={<Announcements/>}   />
+
+
         <Route path="/signout" element={<Signout/>}  />
+
         <Route path="forgotPasssword" element={<ForgotPassword/>}  />
+
       </Routes>
     </Router>
   );
