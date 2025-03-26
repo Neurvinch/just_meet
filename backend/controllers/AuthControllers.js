@@ -161,13 +161,8 @@ exports.changePassword = async (req, res) => {
     }
   };
   exports.sendForgotPasswordCode = async (req, res) => {
-    const { error } = sendCOdeSchema.validate(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        message: error.details[0].message,
-      });
-    }
+   
+    
   
     const { email } = req.body;
   
@@ -213,13 +208,8 @@ exports.changePassword = async (req, res) => {
   };
   
   exports.verifyForgotPasswordCode = async (req, res) => {
-    const { error } = verifyPassCodeSchema.validate(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        message: error.details[0].message,
-      });
-    }
+   
+   
   
     const { email, providedCode, newPassword } = req.body;
   

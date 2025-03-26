@@ -9,6 +9,7 @@ import {
   FaCheckCircle 
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -18,6 +19,7 @@ const ForgotPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [step, setStep] = useState("send");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   
 
