@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React from 'react'
-// import { useNavigate } from 'react-router-dom'
+ import { useNavigate } from 'react-router-dom'
 
 const Payement = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handlePayement = async () =>{
              try { 
@@ -45,7 +45,7 @@ const Payement = () => {
 
                         if(verifyRes.data.success) {
                             alert("Payment verified successfully");
-                            // navigate("/");
+                             navigate("/");
                         } else {
                             alert("Payment failed");
                         }

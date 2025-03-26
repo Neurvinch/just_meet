@@ -11,10 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.15",
-<<<<<<< HEAD
-=======
     "axios": "^1.8.4",
->>>>>>> b46b1745a0f86b2c7a80c1f207c441d51cb486c6
     "framer-motion": "^12.6.0",
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",
@@ -22,10 +19,7 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.4.0",
     "react-toastify": "^11.0.5",
-<<<<<<< HEAD
-=======
     "socket.io-client": "^4.8.1",
->>>>>>> b46b1745a0f86b2c7a80c1f207c441d51cb486c6
     "tailwindcss": "^4.0.15",
     "uuid": "^11.1.0"
   },

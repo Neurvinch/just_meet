@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
-=======
 import { Link } from "react-router-dom";
 
->>>>>>> b46b1745a0f86b2c7a80c1f207c441d51cb486c6
 
 const EnvironmentPage = () => {
-  const [position, setPosition] = useState({ x: 50, y: 50 });
+  const [position, setPosition] = useState({ x: 150, y: 500 });
   const [direction, setDirection] = useState("down");
-  const navigate = useNavigate();
+  
 
 
   useEffect(() => {
@@ -56,28 +52,22 @@ const EnvironmentPage = () => {
   }, []);
 
   const characterImages = {
-    up: "/c1.png",
-    down: "/c1.png",
-    left: "/c1.png",
-    right: "/c1.png",
+    up: "/b1.png",
+    down: "/f.png",
+    left: "/l1.png",
+    right: "/r1.png",
   };
 
   return (
     <div className="relative w-full h-screen">
       {/* Additional Images */}
       {/* <img src="/extra1.png" className="absolute bottom-80 left-50 w-16 h-16 z-50" alt="Extra 1" /> */}
+      <Link to = "/pay">
       <img src="/money.png" className="absolute top-90 left-140 w-26 h-56 z-50" alt="Extra 2" />
+      </Link>
       <img src="/c.png" className="absolute bottom-40 left-130 w-36 h-46 z-50" alt="Extra 3" />
-      <img src="/board.png" className="absolute bottom-50 right-30 w-16 h-30 z-50" alt="Extra 4" />
-<<<<<<< HEAD
-      <img src="/c44.png" className="absolute top-23 left-255 w-40 h-40 z-50" alt="Extra 5" />
-      <img
-      src="/vc.png"
-      className="absolute bottom-90 left-210 w-30 h-30 z-50 cursor-pointer"
-      alt="Extra 6"
-      onClick={() => navigate("/Landing")}
-    />
-=======
+      <Link to = "/Games"><img src="/board.png" className="absolute bottom-50 right-30 w-16 h-30 z-50" alt="Extra 4" />
+      </Link>
       <Link to = "/Home">
       <img
         src="/c44.png"
@@ -87,10 +77,12 @@ const EnvironmentPage = () => {
       </Link>
     
       <img src="/vc.png" className="absolute bottom-90 left-210 w-30 h-30 z-50" alt="Extra 6" />
->>>>>>> b46b1745a0f86b2c7a80c1f207c441d51cb486c6
+      <Link to = "/Games">
       <img src="/boa.png" className="absolute bottom-120 left-50 w-36 h-36 z-50" alt="Extra 7" />
+      </Link>
+      <Link to = "/chatbot">
       <img src="info.png" className="absolute top-120 right-130 w-26 h-56 z-50" alt="Extra 8" />
-      
+      </Link>
       {/* New Image (Bottom Layer) */}
       <div className="absolute bottom-80 left-0 w-full h-full z-0">
         <img src="/cld.avif" alt="Bottom Layer" className="w-full h-full filter brightness-70 contrast-125" />
@@ -103,10 +95,10 @@ const EnvironmentPage = () => {
 
       {/* Character */}
       <div
-        className="absolute transition-all duration-100 ease-in-out z-20"
+        className="absolute transition-all duration-100 ease-in-out z-20 animate-bounce"
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       >
-        <img src={characterImages[direction]} alt="Character" className="w-16 h-36" />
+        <img src={characterImages[direction]} alt="Character" className="w-36 h-46" />
       </div>
 
       {/* Instructions */}
