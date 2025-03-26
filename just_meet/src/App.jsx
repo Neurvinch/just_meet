@@ -16,6 +16,7 @@ import SlidePuzzle from './components/SlidePuzzle';
 import TreasureToss from './components/TreasureToss';
 import Login from "./Pages/Login";
 import DrawingBoard from "./components/DrawBoard";
+import Announcements from "./pages/Announcements";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/treasure" element={<TreasureToss />} />
         <Route path="/login" element={<Login />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
+        <Route path="/ann" element={<Announcements/>}   />
       </Routes>
     </Router>
   );

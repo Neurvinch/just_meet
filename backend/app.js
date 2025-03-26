@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
+const Announcement = require('./routes/announcemnet')
 const chatRoutes = require('./routes/chatRoutes');
 const pollRoutes = require('./routes/PollRoutes');
 const taskRoutes = require('./routes/TaskRoutes');
@@ -12,6 +13,7 @@ const  pay = require("./routes/PayementRoutes")
 const MessageSchema = require('./models/MessageSchema');
 const PollSchema = require('./models/PollSchema');
 const TaskSchema = require('./models/TaskSchema');
+
 
 
 
@@ -29,6 +31,12 @@ app.use(cors({
   origin: 'http://localhost:5173', // allow requests from this origin
   credentials: true,               // enable set cookie and other credentials
 }));
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+
+  connectTimeoutMS: 10000,
+};
 app.use(express.json());
 app.use((req, res, next) => {
   req.io = io; // Attach Socket.IO to request
@@ -40,6 +48,7 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/polls', pollRoutes);
 app.use('/api/tasks', taskRoutes); // Fixed typo
 app.use('/api',pay)
+app.use('/api/announcements' ,Announcement )
 
 // MongoDB Connection
 mongoose
@@ -152,6 +161,20 @@ io.on("connection", (socket) => {
   // Clear canvas
   socket.on('clearCanvas', () => {
     io.emit('clearCanvas'); // Broadcast to all clients
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
+
+  socket.on('createAnnouncement', async (announcement) => {
+    try {
+      const newAnnouncement = new Announcement(announcement);
+      await newAnnouncement.save();
+      io.emit('announcementUpdate', await Announcement.find().sort({ createdAt: -1 }));
+    } catch (err) {
+      console.error('Failed to create announcement:', err);
+    }
   });
 
   socket.on('disconnect', () => {
