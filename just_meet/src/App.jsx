@@ -41,7 +41,7 @@ function App() {
         <Route path="/slide" element={<SlidePuzzle />} />
         <Route path="/treasure" element={<TreasureToss />} />
 
-        {/* <Route path="/login" element={<Login />} />  */}
+        <Route path="/login" element={<PixelAuthPage />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
         <Route path="/ann" element={<Announcements/>}   />
 
