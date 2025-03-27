@@ -12,6 +12,8 @@ const PixelPolling = () => {
   const [newPoll, setNewPoll] = useState({ question: '', options: ['', ''] });
   const [loading, setLoading] = useState(false);
   const [error , setError ] = useState("")
+  const[isUsernameSet , setIsUsernameSet] = useState(false)
+  
 
   // Background images with random positioning
   const backgroundImages = [
@@ -101,7 +103,47 @@ const PixelPolling = () => {
         options: newPoll.options.filter((_, index) => index !== indexToRemove),
       });
     }
-  };
+  };   
+
+  if (!isUsernameSet) {
+    return (
+      <div className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
+        {backgroundImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute ${image.top || ''} ${image.bottom || ''} ${image.left || ''} ${image.right || ''} opacity-20 z-0`}
+          >
+            <img
+              src={image.src}
+              alt={`Background image ${index + 1}`}
+              className="rounded-2xl shadow-lg transform rotate-6 hover:rotate-0 transition-all duration-300 w-30 h-30"
+            />
+          </div>
+        ))}
+
+        <div className="relative z-10 w-full max-w-md bg-black border-4 border-white rounded-2xl p-8 shadow-2xl">
+          <h2 className="text-3xl font-bold text-white text-center mb-6 pixel-font">
+            Enter Your Username
+          </h2>
+          <form onSubmit={handleUsernameSubmit} className="space-y-4">
+            <input
+              type="text"
+              name="username"
+              placeholder="Choose a username"
+              required
+              className="w-full p-3 bg-black border-2 border-white text-white rounded-lg pixel-font placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            <button
+              type="submit"
+              className="w-full bg-green-500 text-black text-sm font-bold py-3 rounded-lg hover:bg-gray-200 pixel-font transition-colors duration-300"
+            >
+              Join Chat
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen bg-gray-100 overflow-hidden pixel-font">
