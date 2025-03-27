@@ -20,7 +20,7 @@ import TaskBoard from './Pages/TaskBoard.jsx'
 import DrawingBoard from "./components/DrawBoard";
 import Chat from "./Pages/Chat";
 
-import  PixelPolling from "./Pages/Polling.jsx"
+import  PixelPolling from "./pages/Polling.jsx"
 import Announcements from "./pages/Announcements";
 import Signout from "./pages/Signout";
 import ForgotPassword from "./pages/ForgotPasssword";
@@ -49,7 +49,7 @@ function App() {
         <Route path = "/board"   element={<DrawingBoard/>} />
         <Route path = "/Chat"   element={<Chat/>} />
         <Route path="/ann" element={<Announcements/>}   />
-        <Route path="/vote" element={< PixelPolling/>}   />
+        <Route path="/poll" element={< PixelPolling/>}   />
         <Route path="/signout" element={<Signout/>}  />
         <Route path="/TaskList" element={<TaskList/>}  />
         <Route path="/ann" element={<Announcements/>}   />
