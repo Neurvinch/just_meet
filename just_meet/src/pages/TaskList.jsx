@@ -37,6 +37,15 @@ const TaskList = () => {
     };
   }, []);
 
+  const handleUsernameSubmit = (e) => {
+    e.preventDefault();
+    const enteredUsername = e.target.username.value.trim();
+    if (enteredUsername) {
+      setUsername(enteredUsername || 'Anonymous');
+      setIsUsernameSet(true);
+    }
+  };
+
   const createTask = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -94,7 +103,7 @@ const TaskList = () => {
               type="submit"
               className="w-full bg-green-500 text-black text-sm font-bold py-3 rounded-lg hover:bg-gray-200 pixel-font transition-colors duration-300"
             >
-              Join Chat
+              Create a Task List..
             </button>
           </form>
         </div>
