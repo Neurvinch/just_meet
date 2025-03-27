@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
-import Mainpage from "./Pages/Mainpage";
+import Mainpage from "./Pages/mainpage.jsx";
 import Landing from "./Pages/Landing";
 import EnvironmentPage from "./Pages/environment.jsx";
 import PixelAuthPage from "./Pages/PixelAuthPage";
