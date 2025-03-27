@@ -132,6 +132,13 @@ const EnvironmentPage = () => {
     alt="Extra 8" 
   />
 </Link>
+<Link to="/Taskboard">
+  <img 
+    src="c2.png" 
+    className="absolute top-110 left-90 w-36 h-36 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
+    alt="Extra 8" 
+  />
+</Link>
       {/* New Image (Bottom Layer) */}
       <div className="absolute bottom-80 left-0 w-full h-full z-0">
         <img src="/cld.avif" alt="Bottom Layer" className="w-full h-full filter brightness-70 contrast-125" />
