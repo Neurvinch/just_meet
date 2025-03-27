@@ -14,7 +14,7 @@ import Game2048 from './components/Game2048';
 import MathGame from './components/MathGame';
 import SlidePuzzle from './components/SlidePuzzle';
 import TreasureToss from './components/TreasureToss';
-import TaskBoard from './Pages/TaskBoard.jsx'
+import TaskBoard from "./Pages/TaskBoard.jsx"
 
 
 import DrawingBoard from "./components/DrawBoard";
