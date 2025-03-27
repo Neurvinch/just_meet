@@ -18,7 +18,7 @@ import TreasureToss from './components/TreasureToss';
 
 
 import DrawingBoard from "./components/DrawBoard";
-import Chat from "./Pages/Chat.jsx"
+import ChatRoom from "./Pages/Chat.jsx"
 
 import  PixelPolling from "./pages/Polling.jsx"
 import Announcements from "./pages/Announcements";
@@ -48,7 +48,7 @@ function App() {
         <Route path="/treasure" element={<TreasureToss />} />
         <Route path="/login" element={<PixelAuthPage />} /> 
         <Route path = "/board"   element={<DrawingBoard/>} />
-        <Route path = "/Chat"   element={<Chat/>} />
+        <Route path = "/Chat"   element={<ChatRoom/>} />
         <Route path="/ann" element={<Announcements/>}   />
         <Route path="/poll" element={< PixelPolling/>}   />
         <Route path="/signout" element={<Signout/>}  />
