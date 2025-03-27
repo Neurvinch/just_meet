@@ -7,7 +7,7 @@ import PixelAuthPage from "./Pages/PixelAuthPage";
 import Home from "./Pages/Home";
 import Room from "./Pages/Room.jsx";
 import Chatbot from "./Pages/Chatbot";
-import Payment from  "./Pages/Payement.jsx";
+
 import Games from './components/GameSelector';
 import WhackAMole from './components/WhackAMole';
 import Game2048 from './components/Game2048';
@@ -25,6 +25,7 @@ import Announcements from "./pages/Announcements";
 import Signout from "./pages/Signout";
 import ForgotPassword from "./pages/ForgotPasssword";
 import TaskList  from "./pages/TaskList.jsx";
+import Payement from "./Pages/Payement.jsx";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/room/:roomId" element={<Room />} />
         <Route path="/chatbot" element={<Chatbot />} />
-        <Route path="/pay" element={<Payment />} />
+        <Route path="/pay" element={<Payement/>} />
         <Route path="/games" element={<Games />} />
         <Route path="/whackamole" element={<WhackAMole />} />
         <Route path="/game2048" element={<Game2048 />} />
