@@ -11,6 +11,7 @@ const PixelPolling = () => {
   const [polls, setPolls] = useState([]);
   const [newPoll, setNewPoll] = useState({ question: '', options: ['', ''] });
   const [loading, setLoading] = useState(false);
+  const [error , setError ] = useState("")
 
   // Background images with random positioning
   const backgroundImages = [

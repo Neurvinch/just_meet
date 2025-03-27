@@ -31,7 +31,7 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path="/" element={<Mainpage />} />
+        <Route path="/" element={<Mainpage/>} />
         <Route path="/landing" element={<Landing />} />
         <Route path="/environment" element={<EnvironmentPage />} />
         <Route path="/pixelauthpage" element={<PixelAuthPage />} />
