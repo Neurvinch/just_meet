@@ -3,8 +3,8 @@ const { createOrder ,verifyPayement } = require("../controllers/PayementControll
 const router = express.Router();
 // const { identifer } = require("../Middlewares/Identifier");
 
-router.post("/payement/create-order" ,   createOrder);
+router.post("/payement/create-order" , createOrder);
 
-router.post("/payement/verify",   verifyPayement);
+router.post("/payement/verify",verifyPayement);
 
 module.exports = router;
