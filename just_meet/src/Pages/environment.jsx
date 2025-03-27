@@ -76,7 +76,7 @@ const EnvironmentPage = () => {
     alt="Extra 2" 
   />
 </Link>
-<Link to="/vote">
+<Link to="/poll">
   <img 
     src="/vote.png" 
     className="absolute bottom-30 left-130 w-36 h-36 z-50 drop-shadow-[0_0_15px_rgba(255,215,0,0.9)] hover:drop-shadow-[0_0_20px_rgba(255,215,0,1)]" 
