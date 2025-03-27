@@ -7,7 +7,7 @@ import PixelAuthPage from "./Pages/PixelAuthPage";
 import Home from "./Pages/Home";
 import Room from "./Pages/Room.jsx";
 import Chatbot from "./Pages/Chatbot";
-import Payment from "./Pages/Payement";
+import Payment from "./Pages/Payement.jsx";
 import Games from './components/GameSelector';
 import WhackAMole from './components/WhackAMole';
 import Game2048 from './components/Game2048';
