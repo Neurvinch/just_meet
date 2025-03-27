@@ -5,7 +5,7 @@ import Landing from "./Pages/Landing";
 import EnvironmentPage from "./Pages/environment.jsx";
 import PixelAuthPage from "./Pages/PixelAuthPage";
 import Home from "./Pages/Home";
-import Room from "./Pages/Room";
+import Room from "./Pages/Room.jsx";
 import Chatbot from "./Pages/Chatbot";
 import Payment from "./Pages/Payement";
 import Games from './components/GameSelector';
