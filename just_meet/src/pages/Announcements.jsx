@@ -22,6 +22,15 @@ const Announcements = () => {
     { src: "/p6.png", bottom: "bottom-10", right: "right-1/3" }
   ];
 
+  const handleUsernameSubmit = (e) => {
+    e.preventDefault();
+    const enteredUsername = e.target.username.value.trim();
+    if (enteredUsername) {
+      setUsername(enteredUsername || 'Anonymous');
+      setIsUsernameSet(true);
+    }
+  };
+
   useEffect(() => {
     const user = prompt('Enter your username:') || 'Anonymous';
     setUsername(user);
@@ -124,7 +133,7 @@ const Announcements = () => {
               type="submit"
               className="w-full bg-green-500 text-black text-sm font-bold py-3 rounded-lg hover:bg-gray-200 pixel-font transition-colors duration-300"
             >
-              Join Chat
+              Create Announcements
             </button>
           </form>
         </div>
