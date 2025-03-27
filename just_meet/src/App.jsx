@@ -14,7 +14,7 @@ import Game2048 from './components/Game2048';
 import MathGame from './components/MathGame';
 import SlidePuzzle from './components/SlidePuzzle';
 import TreasureToss from './components/TreasureToss';
-
+import TaskBoard from './Pages/TaskBoard.jsx'
 
 
 import DrawingBoard from "./components/DrawBoard";
@@ -53,6 +53,7 @@ function App() {
         <Route path="/signout" element={<Signout/>}  />
         <Route path="/TaskList" element={<TaskList/>}  />
         <Route path="/ann" element={<Announcements/>}   />
+        <Route path="/taskboard" element={<TaskBoard/>}   />
 
 
         <Route path="/signout" element={<Signout/>}  />
