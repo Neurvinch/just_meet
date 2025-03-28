@@ -18,7 +18,7 @@ import TreasureToss from './components/TreasureToss';
 
 
 import DrawingBoard from "./components/DrawBoard";
-import ChatRoom from "./Pages/Chat.jsx"
+import ChatRoom from "./components/Chat.jsx"
 
 import  PixelPolling from "./pages/Polling.jsx"
 import Announcements from "./pages/Announcements";
